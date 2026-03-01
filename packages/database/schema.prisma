@@ -168,6 +168,8 @@ model User {
   company         Company[]        @relation("CompanyToOwner")
   CompanyMember   CompanyMember[]  @relation("UserToCompanyMember")
   projects        Project[]        @relation("ProjectToUser")
+  reviews         Review[]
+  watchlists      Watchlist[]
 
   @@index([deletedAt])
   @@index([scope])
@@ -693,4 +695,91 @@ model Project {
   @@index([status])
   @@index([deletedAt])
   @@map("projects")
+}
+
+// ------------------------------------------------------------------------
+// FilmLog Modelleri
+// ------------------------------------------------------------------------
+
+model Movie {
+  /// @prismabox.hide
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(uuid())
+
+  /// @prismabox.options{minLength:2,maxLength:255}
+  title String @db.VarChar(255)
+
+  /// @prismabox.options{minLength:0,maxLength:1024}
+  description String? @db.Text
+
+  releaseYear Int @map("release_year")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  /// @prismabox.input.hide
+  deletedAt DateTime? @map("deleted_at")
+
+  reviews    Review[]
+  watchlists Watchlist[]
+
+  @@index([deletedAt])
+  @@map("movies")
+}
+
+model Review {
+  /// @prismabox.hide
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(uuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  movieId Int   @map("movie_id")
+  movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  rating Int // 1-5
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  /// @prismabox.input.hide
+  deletedAt DateTime? @map("deleted_at")
+
+  @@unique([userId, movieId])
+  @@index([userId])
+  @@index([movieId])
+  @@index([deletedAt])
+  @@map("reviews")
+}
+
+enum WatchlistStatus {
+  WATCHED
+  PLAN_TO_WATCH
+
+  @@map("watchlist_status")
+}
+
+model Watchlist {
+  /// @prismabox.hide
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(uuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  movieId Int   @map("movie_id")
+  movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  status WatchlistStatus @default(PLAN_TO_WATCH)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  /// @prismabox.input.hide
+  deletedAt DateTime? @map("deleted_at")
+
+  @@unique([userId, movieId])
+  @@index([userId])
+  @@index([movieId])
+  @@index([status])
+  @@index([deletedAt])
+  @@map("watchlists")
 }
