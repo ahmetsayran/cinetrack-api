@@ -1,6 +1,6 @@
-import { moviesModule } from './movies';
+import { moviesController } from './movies';
 
-import { watchlistModule } from "./watchlist";
+import { watchlistController } from "./watchlist";
 
 import Elysia from 'elysia';
 import authController from './auth/controller';
@@ -21,8 +21,8 @@ const app = new Elysia()
   .use(locationsController)
   .use(companiesController)
   .use(fileLibraryAssetsController)
-  .use(moviesModule)
-  .use(watchlistModule)
+  .use(moviesController)
+  .use(watchlistController)
   .get(
     '/',
     () => ({

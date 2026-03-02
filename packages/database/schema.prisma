@@ -56,7 +56,7 @@ enum OrganizationType {
 }
 
 enum UserScope {
-  SYSTEM  // System-level access (can access all companies and system features)
+  SYSTEM // System-level access (can access all companies and system features)
   COMPANY // Company-level access (limited to their company memberships)
 
   @@map("user_scope")

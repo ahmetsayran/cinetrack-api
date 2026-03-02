@@ -297,6 +297,58 @@ export const PERMISSIONS = {
   },
 
   // ====================================================================
+  // 🍿 MOVIE MANAGEMENT
+  // ====================================================================
+  MOVIES: {
+    SHOW: {
+      key: 'movies:show',
+      description: 'Filmleri Görüntüle',
+      scopes: [GLOBAL],
+    },
+    CREATE: {
+      key: 'movies:create',
+      description: 'Film Oluştur',
+      scopes: [GLOBAL],
+    },
+    UPDATE: {
+      key: 'movies:update',
+      description: 'Film Güncelle',
+      scopes: [GLOBAL],
+    },
+    DESTROY: {
+      key: 'movies:destroy',
+      description: 'Film Sil',
+      scopes: [GLOBAL],
+    },
+  },
+
+  // ====================================================================
+  // 📚 WATCHLIST MANAGEMENT
+  // ====================================================================
+  WATCHLISTS: {
+    SHOW: {
+      key: 'watchlists:show',
+      description: 'İzleme Listesi Görüntüle',
+      scopes: [GLOBAL],
+    },
+    CREATE: {
+      key: 'watchlists:create',
+      description: 'İzleme Listesi Oluştur',
+      scopes: [GLOBAL],
+    },
+    UPDATE: {
+      key: 'watchlists:update',
+      description: 'İzleme Listesi Güncelle',
+      scopes: [GLOBAL],
+    },
+    DESTROY: {
+      key: 'watchlists:destroy',
+      description: 'İzleme Listesi Sil',
+      scopes: [GLOBAL],
+    },
+  },
+
+  // ====================================================================
   // 📋 PROJECT MANAGEMENT (Example CRUD with permission-based authorization)
   // ====================================================================
   PROJECTS: {
@@ -489,6 +541,24 @@ export const PERMISSION_GROUPS = {
     key: 'posts',
     description: 'Gönderiler',
     permissions: Object.values(PERMISSIONS.POSTS),
+  },
+
+  // ====================================================================
+  // 🍿 MOVIE MANAGEMENT
+  // ====================================================================
+  MOVIES: {
+    key: 'movies',
+    description: 'Filmler',
+    permissions: Object.values(PERMISSIONS.MOVIES),
+  },
+
+  // ====================================================================
+  // 📚 WATCHLIST MANAGEMENT
+  // ====================================================================
+  WATCHLISTS: {
+    key: 'watchlists',
+    description: 'İzleme Listeleri',
+    permissions: Object.values(PERMISSIONS.WATCHLISTS),
   },
 
   // ====================================================================
