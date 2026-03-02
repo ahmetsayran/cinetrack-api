@@ -21,3 +21,25 @@ export const getAllMovies = async () => {
   });
 };
 
+export const getMovieByUuid = async (uuid: string) => {
+  return prisma.movie.findFirst({
+    where: { uuid, deletedAt: null },
+  });
+};
+
+export const updateMovieByUuid = async (
+  uuid: string,
+  data: { title?: string; description?: string | null; releaseYear?: number },
+) => {
+  return prisma.movie.update({
+    where: { uuid },
+    data,
+  });
+};
+
+export const softDeleteMovieByUuid = async (uuid: string) => {
+  return prisma.movie.update({
+    where: { uuid },
+    data: { deletedAt: new Date() },
+  });
+};
