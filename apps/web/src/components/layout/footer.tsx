@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import {
     IconBrandInstagram,
-    IconBrandTwitterFilled,
+    IconBrandX,
     IconBrandYoutubeFilled,
     IconBrandFacebookFilled
 } from '@tabler/icons-react';
@@ -33,8 +33,8 @@ export function Footer() {
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#E1306C] hover:text-white transition-all duration-300">
                             <IconBrandInstagram size={20} stroke={2} />
                         </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#1DA1F2] hover:text-white transition-all duration-300">
-                            <IconBrandTwitterFilled size={20} />
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#333333] hover:text-white transition-all duration-300">
+                            <IconBrandX size={20} />
                         </a>
                         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-[#FF0000] hover:text-white transition-all duration-300">
                             <IconBrandYoutubeFilled size={20} />
@@ -46,15 +46,12 @@ export function Footer() {
                 </div>
 
                 {/* Right Side: Contact */}
-                <div className="flex flex-col items-center md:items-end gap-2">
-                    <span className="font-semibold text-gray-400 uppercase tracking-widest text-xs">
-                        {language === 'TR' ? 'İletişim' : 'Contact'}
-                    </span>
+                <div className="flex flex-col items-center md:items-end gap-2 justify-center h-full pt-4">
                     <a href="mailto:contact@filmlog.com" className="text-base text-gray-300 hover:text-[#E5B509] transition-colors font-medium">
                         contact@filmlog.com
                     </a>
-                    <a href="tel:+905551234567" className="text-sm text-gray-500 hover:text-[#E5B509] transition-colors">
-                        +90 (555) 123 45 67
+                    <a href="tel:+905300000000" className="text-sm text-gray-500 hover:text-[#E5B509] transition-colors">
+                        +90 530 000 00 00
                     </a>
                 </div>
 
