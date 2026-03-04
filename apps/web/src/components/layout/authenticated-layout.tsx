@@ -1,5 +1,6 @@
 import { Outlet } from '@tanstack/react-router';
 import { Header } from '#/components/layout/header';
+import { Footer } from '#/components/layout/footer';
 import { SearchProvider } from '#/context/search-context';
 import { LanguageProvider } from '#/context/language-context';
 
@@ -20,9 +21,7 @@ export function AuthenticatedLayout({ children }: Props) {
             {children ? children : <Outlet />}
           </main>
 
-          <footer className="w-full bg-[#121212] py-8 text-center text-sm text-white/50 mt-auto border-t border-[#333333]">
-            &copy; {new Date().getFullYear()} FilmLog. Tüm hakları saklıdır.
-          </footer>
+          <Footer />
         </div>
       </SearchProvider>
     </LanguageProvider>
