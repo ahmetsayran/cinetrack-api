@@ -65,19 +65,19 @@ export const Header = ({ className, fixed, children, ...props }: HeaderProps) =>
             >
               <DropdownMenuGroup>
                 <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <Link to="/">{t('action') || 'Aksiyon'}</Link>
+                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Aksiyon')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('action') || 'Aksiyon'}</button>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <Link to="/">{t('comedy') || 'Komedi'}</Link>
+                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Komedi')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('comedy') || 'Komedi'}</button>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <Link to="/">{t('horror') || 'Korku'}</Link>
+                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Korku')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('horror') || 'Korku'}</button>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <Link to="/">{t('scifi') || 'Bilim Kurgu'}</Link>
+                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Bilim Kurgu')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('scifi') || 'Bilim Kurgu'}</button>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <Link to="/">{t('romance') || 'Romantik'}</Link>
+                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Romantik')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('romance') || 'Romantik'}</button>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>

@@ -499,7 +499,7 @@ export function MovieGrid() {
                                             <Dialog>
                                                 <DialogTrigger asChild>
                                                     <div className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer" title="Yorumları Okuyun veya Yorum Yazın">
-                                                        <MessageSquare size={14} className="text-gray-400" />
+                                                        <MessageSquare size={14} className="text-sky-400" />
                                                         <span className="text-foreground">{Math.floor(movie.id / 3) || 12}</span>
                                                     </div>
                                                 </DialogTrigger>
@@ -670,7 +670,7 @@ export function MovieGrid() {
                                             <Dialog>
                                                 <DialogTrigger asChild>
                                                     <div className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer" title="Yorumları Okuyun veya Yorum Yazın">
-                                                        <MessageSquare size={14} className="text-gray-400" />
+                                                        <MessageSquare size={14} className="text-sky-400" />
                                                         <span className="text-foreground">{Math.floor(movie.id / 3) || 12}</span>
                                                     </div>
                                                 </DialogTrigger>
@@ -713,7 +713,7 @@ export function MovieGrid() {
             {/* DİNAMİK KATEGORİ (CATEGORY_MOVIES) SLİDER'LARI */}
             {
                 CATEGORIES.map(category => (
-                    <div key={category} className="w-full pt-4">
+                    <div key={category} id={`category-${category}`} className="w-full pt-4 scroll-mt-24">
                         <div className="flex items-center justify-between mb-6 px-4 md:px-0">
                             <h2 className="text-2xl font-bold flex items-center gap-2">
                                 <span className="w-1 h-8 bg-[#F5C518] rounded-full inline-block"></span>
@@ -840,7 +840,7 @@ export function MovieGrid() {
                                                     <Dialog>
                                                         <DialogTrigger asChild>
                                                             <div className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer" title="Yorumları Okuyun veya Yorum Yazın">
-                                                                <MessageSquare size={14} className="text-gray-400" />
+                                                                <MessageSquare size={14} className="text-sky-400" />
                                                                 <span className="text-foreground">{Math.floor(movie.id / 3) || 12}</span>
                                                             </div>
                                                         </DialogTrigger>
