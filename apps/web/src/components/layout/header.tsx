@@ -64,20 +64,50 @@ export const Header = ({ className, fixed, children, ...props }: HeaderProps) =>
               onMouseLeave={() => setIsCategoriesOpen(false)}
             >
               <DropdownMenuGroup>
-                <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Aksiyon')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('action') || 'Aksiyon'}</button>
+                <DropdownMenuItem
+                  className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
+                  onSelect={() => {
+                    document.getElementById('category-Aksiyon')?.scrollIntoView({ behavior: 'smooth' });
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  {t('action') || 'Aksiyon'}
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Komedi')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('comedy') || 'Komedi'}</button>
+                <DropdownMenuItem
+                  className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
+                  onSelect={() => {
+                    document.getElementById('category-Komedi')?.scrollIntoView({ behavior: 'smooth' });
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  {t('comedy') || 'Komedi'}
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Korku')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('horror') || 'Korku'}</button>
+                <DropdownMenuItem
+                  className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
+                  onSelect={() => {
+                    document.getElementById('category-Korku')?.scrollIntoView({ behavior: 'smooth' });
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  {t('horror') || 'Korku'}
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Bilim Kurgu')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('scifi') || 'Bilim Kurgu'}</button>
+                <DropdownMenuItem
+                  className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
+                  onSelect={() => {
+                    document.getElementById('category-Bilim Kurgu')?.scrollIntoView({ behavior: 'smooth' });
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  {t('scifi') || 'Bilim Kurgu'}
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200">
-                  <button className="w-full text-left" onClick={() => { document.getElementById('category-Romantik')?.scrollIntoView({ behavior: 'smooth' }); setIsCategoriesOpen(false); }}>{t('romance') || 'Romantik'}</button>
+                <DropdownMenuItem
+                  className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
+                  onSelect={() => {
+                    document.getElementById('category-Romantik')?.scrollIntoView({ behavior: 'smooth' });
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  {t('romance') || 'Romantik'}
                 </DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
