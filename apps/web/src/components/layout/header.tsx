@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { Search, Plus } from 'lucide-react';
 import { Input } from '#/components/ui/input';
 import { Button } from '#/components/ui/button';
@@ -21,6 +21,25 @@ interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
 export const Header = ({ className, fixed, children, ...props }: HeaderProps) => {
   const { t, language, setLanguage } = useLanguage();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryName: string) => {
+    setIsCategoriesOpen(false);
+
+    // Eğer anasayfada değilsek, önce anasayfaya dön, saniye sonra scroll yap
+    if (window.location.pathname !== '/') {
+      navigate({ to: '/' }).then(() => {
+        setTimeout(() => {
+          document.getElementById(`category-${categoryName}`)?.scrollIntoView({ behavior: 'smooth' });
+        }, 400); // Route geçişi için ufak tolerans
+      });
+    } else {
+      // Zaten anasayfadaysak, ufak gecikmeyle (Radix menü kapanışını bekle) scroll yap
+      setTimeout(() => {
+        document.getElementById(`category-${categoryName}`)?.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    }
+  };
 
   return (
     <header
@@ -60,52 +79,38 @@ export const Header = ({ className, fixed, children, ...props }: HeaderProps) =>
             <DropdownMenuContent
               align="start"
               className="w-56 bg-[#2A2A2A] text-white border-[#333333] text-base"
+              onCloseAutoFocus={(e) => e.preventDefault()}
               onMouseEnter={() => setIsCategoriesOpen(true)}
               onMouseLeave={() => setIsCategoriesOpen(false)}
             >
               <DropdownMenuGroup>
                 <DropdownMenuItem
                   className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
-                  onSelect={() => {
-                    document.getElementById('category-Aksiyon')?.scrollIntoView({ behavior: 'smooth' });
-                    setIsCategoriesOpen(false);
-                  }}
+                  onSelect={(e) => { e.preventDefault(); handleCategoryClick('Aksiyon'); }}
                 >
                   {t('action') || 'Aksiyon'}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
-                  onSelect={() => {
-                    document.getElementById('category-Komedi')?.scrollIntoView({ behavior: 'smooth' });
-                    setIsCategoriesOpen(false);
-                  }}
+                  onSelect={(e) => { e.preventDefault(); handleCategoryClick('Komedi'); }}
                 >
                   {t('comedy') || 'Komedi'}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
-                  onSelect={() => {
-                    document.getElementById('category-Korku')?.scrollIntoView({ behavior: 'smooth' });
-                    setIsCategoriesOpen(false);
-                  }}
+                  onSelect={(e) => { e.preventDefault(); handleCategoryClick('Korku'); }}
                 >
                   {t('horror') || 'Korku'}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
-                  onSelect={() => {
-                    document.getElementById('category-Bilim Kurgu')?.scrollIntoView({ behavior: 'smooth' });
-                    setIsCategoriesOpen(false);
-                  }}
+                  onSelect={(e) => { e.preventDefault(); handleCategoryClick('Bilim Kurgu'); }}
                 >
                   {t('scifi') || 'Bilim Kurgu'}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="hover:bg-[#333333] cursor-pointer py-2 text-sm text-gray-200 w-full"
-                  onSelect={() => {
-                    document.getElementById('category-Romantik')?.scrollIntoView({ behavior: 'smooth' });
-                    setIsCategoriesOpen(false);
-                  }}
+                  onSelect={(e) => { e.preventDefault(); handleCategoryClick('Romantik'); }}
                 >
                   {t('romance') || 'Romantik'}
                 </DropdownMenuItem>
