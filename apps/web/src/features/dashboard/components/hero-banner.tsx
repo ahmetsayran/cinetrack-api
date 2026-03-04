@@ -106,7 +106,7 @@ export function HeroBanner() {
     };
 
     return (
-        <div className="w-full pt-4 pb-8 overflow-hidden relative select-none">
+        <div className="w-full mt-16 md:mt-24 mb-16 md:mb-24 pt-4 pb-8 overflow-hidden relative select-none">
             <h2 className="text-xl md:text-2xl font-bold mb-6 px-4 md:px-0">{t('featured')}</h2>
 
             {/* Slider Alanı Yüksekliği (Eskiden 500px'di, şimdi 350px gibi dar tutuldu) */}

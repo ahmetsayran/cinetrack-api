@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
+import { User } from 'lucide-react';
 import { Button } from '#/components/ui/button';
 import {
   DropdownMenu,
@@ -12,17 +13,21 @@ import {
   DropdownMenuTrigger,
 } from '#/components/ui/dropdown-menu';
 import { useNavUser } from '#/hooks/use-nav-user';
+import { useLanguage } from '#/context/language-context';
 
 export function ProfileDropdown() {
-  const { userName, userEmail, userAvatar, userInitials, handleLogout } = useNavUser();
+  const { userName, userEmail, userAvatar, handleLogout } = useNavUser();
+  const { t } = useLanguage();
 
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
+        <Button variant="ghost" className="relative h-11 w-11 rounded-full hover:bg-white/10 p-0 flex items-center justify-center">
+          <Avatar className="h-11 w-11 bg-transparent flex items-center justify-center">
             <AvatarImage src={userAvatar || undefined} alt={userName} />
-            <AvatarFallback>{userInitials}</AvatarFallback>
+            <AvatarFallback className="bg-transparent text-white flex items-center justify-center w-full h-full">
+              <User className="h-8 w-8" strokeWidth={2} />
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -37,27 +42,27 @@ export function ProfileDropdown() {
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
             <Link to="/demo/settings">
-              Profile
+              {t('profile')}
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link to="/demo/settings">
-              Billing
+              {t('billing')}
               <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link to="/demo/settings">
-              Settings
+              {t('settings')}
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>New Team</DropdownMenuItem>
+          <DropdownMenuItem>{t('newTeam')}</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
-          Log out
+          {t('logout')}
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

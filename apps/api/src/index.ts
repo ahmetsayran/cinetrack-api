@@ -30,7 +30,17 @@ const app = new Elysia({
     idleTimeout: 120,
   },
 })
-  .use(cors())
+  .use(cors({
+    origin: [
+      process.env.APP_URL || 'http://localhost:5173',
+      'http://127.0.0.1:5173',
+      'http://localhost:5174',
+      'http://127.0.0.1:5174'
+    ],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  }))
   .onError(handleElysiaError)
   .use(
     staticPlugin({

@@ -60,7 +60,7 @@ const app = new Elysia({ prefix: "/watchlist", tags: ["Watchlist"] })
           const response = ctx.response as ReturnType<
             typeof WatchlistFormatter.response
           >;
-          return response.uuid;
+          return (response as any).uuid;
         },
         getDescription: () => "İzleme listesine yeni film eklendi",
       })

@@ -11,7 +11,7 @@ export abstract class MoviesService {
     context: 'find' | 'create' | 'update' | 'delete',
   ) {
     if (error instanceof PrismaClientKnownRequestError) {
-      if (error.code === 'P2025') {
+      if ((error as any).code === 'P2025') {
         throw new NotFoundException('Film bulunamadı');
       }
     }

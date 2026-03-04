@@ -1,6 +1,7 @@
 import { moviesController } from './movies';
 
 import { watchlistController } from "./watchlist";
+import { reviewsController } from "./reviews";
 
 import Elysia from 'elysia';
 import authController from './auth/controller';
@@ -23,6 +24,7 @@ const app = new Elysia()
   .use(fileLibraryAssetsController)
   .use(moviesController)
   .use(watchlistController)
+  .use(reviewsController)
   .get(
     '/',
     () => ({
@@ -52,6 +54,7 @@ export const swaggerTags: { name: string; description: string }[] = [
   { name: 'Region', description: 'Region endpoints' },
   { name: 'Subregion', description: 'Subregion endpoints' },
   { name: 'File Library Assets', description: 'File Library Assets endpoints' },
+  { name: 'Reviews', description: 'Review endpoints' },
 ];
 
 export default app;

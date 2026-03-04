@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedWatchlistRouteImport } from './routes/_authenticated/watchlist'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
@@ -67,6 +68,11 @@ const authRouteRoute = authRouteRouteImport.update({
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWatchlistRoute = AuthenticatedWatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const errors503Route = errors503RouteImport.update({
@@ -326,6 +332,7 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/watchlist': typeof AuthenticatedWatchlistRoute
   '/': typeof AuthenticatedIndexRoute
   '/demo/settings': typeof AuthenticatedDemoSettingsRouteRouteWithChildren
   '/companies/$uuid': typeof AuthenticatedCompaniesUuidRoute
@@ -372,6 +379,7 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/watchlist': typeof AuthenticatedWatchlistRoute
   '/': typeof AuthenticatedIndexRoute
   '/companies/$uuid': typeof AuthenticatedCompaniesUuidRoute
   '/companies/create': typeof AuthenticatedCompaniesCreateRoute
@@ -420,6 +428,7 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
+  '/_authenticated/watchlist': typeof AuthenticatedWatchlistRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/demo/settings': typeof AuthenticatedDemoSettingsRouteRouteWithChildren
   '/_authenticated/companies/$uuid': typeof AuthenticatedCompaniesUuidRoute
@@ -468,6 +477,7 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/watchlist'
     | '/'
     | '/demo/settings'
     | '/companies/$uuid'
@@ -514,6 +524,7 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/watchlist'
     | '/'
     | '/companies/$uuid'
     | '/companies/create'
@@ -561,6 +572,7 @@ export interface FileRouteTypes {
     | '/(errors)/404'
     | '/(errors)/500'
     | '/(errors)/503'
+    | '/_authenticated/watchlist'
     | '/_authenticated/'
     | '/_authenticated/demo/settings'
     | '/_authenticated/companies/$uuid'
@@ -629,6 +641,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/watchlist': {
+      id: '/_authenticated/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof AuthenticatedWatchlistRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/(errors)/503': {
@@ -980,6 +999,7 @@ const AuthenticatedDemoSettingsRouteRouteWithChildren =
   )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedWatchlistRoute: typeof AuthenticatedWatchlistRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedDemoSettingsRouteRoute: typeof AuthenticatedDemoSettingsRouteRouteWithChildren
   AuthenticatedCompaniesUuidRoute: typeof AuthenticatedCompaniesUuidRoute
@@ -1013,6 +1033,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedWatchlistRoute: AuthenticatedWatchlistRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedDemoSettingsRouteRoute:
     AuthenticatedDemoSettingsRouteRouteWithChildren,

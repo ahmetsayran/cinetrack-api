@@ -36,22 +36,41 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const form = useForm<FormSchema>({
         resolver: typeboxResolver(formSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            email: "admin@example.com",
+            password: "password",
         },
     });
 
     async function onSubmit(data: FormSchema) {
-        const response = await authClient.signIn.email({
-            email: data.email,
-            password: data.password,
-            callbackURL: "/",
-        });
-        if (response.error) {
-            toast.error(response.error.message);
-        }
-        if (response.data) {
-            toast.success("Login successful");
+        try {
+            // Implement a timeout to prevent infinite hanging
+            const timeoutPromise = new Promise((resolve) =>
+                setTimeout(() => resolve({ error: { message: "Request timed out after 10 seconds. Check your connection or CORS settings." } }), 10000)
+            );
+
+            const signInPromise = authClient.signIn.email({
+                email: data.email,
+                password: data.password,
+                callbackURL: "/",
+                fetchOptions: {
+                    onSuccess(ctx) {
+                        toast.success("Login successful");
+                        window.location.href = "/";
+                    },
+                    onError(ctx) {
+                        toast.error(ctx.error.message || "An error occurred during login");
+                    }
+                }
+            });
+
+            // @ts-ignore - Handle race condition typing
+            const response: any = await Promise.race([signInPromise, timeoutPromise]);
+
+            if (response?.error) {
+                toast.error(response.error.message);
+            }
+        } catch (error: any) {
+            toast.error(error.message || "A network or server error occurred");
         }
     }
 

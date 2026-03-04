@@ -48,7 +48,7 @@ export default function FileLibraryAssetsIndexPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
   const debouncedSearch = useDebounce(searchKeyword, 300);
   const [fileTypeFilter, setFileTypeFilter] = useState<string>('all');
-  
+
   // Pagination state
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -109,7 +109,7 @@ export default function FileLibraryAssetsIndexPage() {
   }, []);
 
   // CRUD operations
-  const handleUpload = async (file: File, type: import('@onlyjs/db/client').FileLibraryAssetType) => {
+  const handleUpload = async (file: File, type: 'IMAGE' | 'VIDEO' | 'DOCUMENT' | 'AUDIO' | 'OTHER') => {
     await createFileLibraryAsset({ file, type });
   };
 
@@ -169,7 +169,7 @@ export default function FileLibraryAssetsIndexPage() {
               />
             </div>
           </div>
-          
+
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-medium text-muted-foreground">File Type</label>
             <Select

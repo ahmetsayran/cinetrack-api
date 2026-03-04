@@ -1,4 +1,4 @@
-import { PrismaModelNamePascalCase } from '@onlyjs/db/types';
+import type { PrismaModelNamePascalCase } from '@onlyjs/db/types';
 
 export enum AuditLogAction {
   CREATE = 'Create',
@@ -17,4 +17,5 @@ export const AuditLogEntity = {
   COMPANY: 'Company',
   MOVIE: 'Movie',
   WATCHLIST: 'Watchlist',
+  REVIEW: 'Review',
 } as const satisfies Record<string, PrismaModelNamePascalCase>;

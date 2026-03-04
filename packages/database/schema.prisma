@@ -714,6 +714,8 @@ model Movie {
 
   releaseYear Int @map("release_year")
 
+  image String? @db.VarChar(512)
+
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   /// @prismabox.input.hide
@@ -736,6 +738,12 @@ model Review {
 
   movieId Int   @map("movie_id")
   movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  /// @prismabox.options{minLength:1,maxLength:255}
+  title String? @db.VarChar(255)
+
+  /// @prismabox.options{minLength:0,maxLength:2000}
+  comment String? @db.Text
 
   rating Int // 1-5
 

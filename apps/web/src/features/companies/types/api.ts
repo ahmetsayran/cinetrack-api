@@ -8,9 +8,4 @@ export type {
   CompanyUpdatePayload,
 } from '#backend/modules/companies/types';
 
-// Query types için backend'den import
-export type { Static } from 'elysia';
-import type { companyIndexDto } from '#backend/modules/companies/dtos';
-import { Static } from 'elysia';
-
-export type CompanyFilters = Static<typeof companyIndexDto.query>;
+export type { CompanyIndexQuery as CompanyFilters } from '#backend/modules/companies/types';

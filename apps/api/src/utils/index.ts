@@ -3,7 +3,6 @@ export * from './common-field-validations';
 export * from './console-helpers';
 export * from './date-helpers';
 export * from './elysia-types';
-export * from './expression-evaluator';
 export * from './http-errors';
 export * from './middleware-utils';
 export * from './pagination';

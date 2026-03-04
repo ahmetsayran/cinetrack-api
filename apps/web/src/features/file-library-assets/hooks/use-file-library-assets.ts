@@ -1,6 +1,6 @@
 import { api } from '#/lib/api';
 import type { FileLibraryAssetIndexQuery } from '#backend/modules/file-library-assets/types';
-import { FileLibraryAssetType } from '@onlyjs/db/client';
+// Removed @onlyjs/db/client import
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fileLibraryAssetKeys, fileLibraryAssetsListQueryOptions } from '../queries/file-library-asset-queries';
 
@@ -9,7 +9,7 @@ import { fileLibraryAssetKeys, fileLibraryAssetsListQueryOptions } from '../quer
 // ====================================================================
 type CreateFileLibraryAssetInput = {
   file: File;
-  type: FileLibraryAssetType;
+  type: 'IMAGE' | 'VIDEO' | 'DOCUMENT' | 'AUDIO' | 'OTHER';
 };
 
 type UpdateFileLibraryAssetInput = {

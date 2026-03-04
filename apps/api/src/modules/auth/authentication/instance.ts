@@ -17,7 +17,7 @@ export const betterAuth = betterAuthBase({
   //
   appName: process.env.APP_NAME,
   basePath: '/auth',
-  baseURL: process.env.APP_URL ?? 'http://localhost:3000',
+  baseURL: process.env.API_URL ?? 'http://localhost:3000',
   secret: process.env.BETTER_AUTH_SECRET,
   url: process.env.APP_URL,
   trustedOrigins: [
@@ -26,6 +26,8 @@ export const betterAuth = betterAuthBase({
       process.env.API_URL!,
       'http://localhost:5173',
       'http://127.0.0.1:5173',
+      'http://localhost:5174',
+      'http://127.0.0.1:5174',
     ]),
   ],
   domain: process.env.APP_DOMAIN,
@@ -93,25 +95,25 @@ export const betterAuth = betterAuthBase({
       generateId: false,
     },
     crossSubDomainCookies: {
-      enabled: true,
+      enabled: process.env.NODE_ENV === 'production',
       domain: process.env.APP_DOMAIN,
     },
     cookiePrefix: process.env.APP_SLUG,
   },
   secondaryStorage: process.env.REDIS_URL
     ? {
-        get: async (key) => {
-          const value = (await cache.getPrimitive<string>(key)) as string | null;
-          return value ?? null;
-        },
-        set: async (key, value, ttl) => {
-          if (ttl) await cache.set(key, value, ttl);
-          else await cache.set(key, value);
-        },
-        delete: async (key) => {
-          await cache.del(key);
-        },
-      }
+      get: async (key) => {
+        const value = (await cache.getPrimitive<string>(key)) as string | null;
+        return value ?? null;
+      },
+      set: async (key, value, ttl) => {
+        if (ttl) await cache.set(key, value, ttl);
+        else await cache.set(key, value);
+      },
+      delete: async (key) => {
+        await cache.del(key);
+      },
+    }
     : undefined,
   plugins: [
     admin({

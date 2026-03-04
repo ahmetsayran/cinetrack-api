@@ -349,6 +349,32 @@ export const PERMISSIONS = {
   },
 
   // ====================================================================
+  // ⭐ REVIEW MANAGEMENT
+  // ====================================================================
+  REVIEWS: {
+    SHOW: {
+      key: 'reviews:show',
+      description: 'İnceleme Görüntüle',
+      scopes: [GLOBAL],
+    },
+    CREATE: {
+      key: 'reviews:create',
+      description: 'İnceleme Oluştur',
+      scopes: [GLOBAL],
+    },
+    UPDATE: {
+      key: 'reviews:update',
+      description: 'İnceleme Güncelle',
+      scopes: [GLOBAL],
+    },
+    DESTROY: {
+      key: 'reviews:destroy',
+      description: 'İnceleme Sil',
+      scopes: [GLOBAL],
+    },
+  },
+
+  // ====================================================================
   // 📋 PROJECT MANAGEMENT (Example CRUD with permission-based authorization)
   // ====================================================================
   PROJECTS: {
