@@ -338,6 +338,17 @@ export function MovieGrid() {
         });
     };
 
+    const getTranslatedCategory = (cat: string) => {
+        switch (cat) {
+            case 'Aksiyon': return t('action');
+            case 'Komedi': return t('comedy');
+            case 'Korku': return t('horror');
+            case 'Bilim Kurgu': return t('scifi');
+            case 'Romantik': return t('romance');
+            default: return cat;
+        }
+    };
+
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({ left: -800, behavior: 'smooth' });
@@ -717,7 +728,7 @@ export function MovieGrid() {
                         <div className="flex items-center justify-between mb-6 px-4 md:px-0">
                             <h2 className="text-2xl font-bold flex items-center gap-2">
                                 <span className="w-1 h-8 bg-[#F5C518] rounded-full inline-block"></span>
-                                {category}
+                                {getTranslatedCategory(category)}
                             </h2>
                         </div>
 
